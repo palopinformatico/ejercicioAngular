@@ -1,5 +1,4 @@
-
-  <h1>Clientes</h1>
+  <h1>Clientes llamado por SP</h1>
   <table>
   <thead>
     <tr>
@@ -11,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cliente of clientes">
+    <tr *ngFor="let cliente of clientes1">
       <td>{{ cliente.id }}</td>
       <td>{{ cliente.nombre }}</td>
       <td>{{ cliente.email }}</td>
@@ -20,3 +19,60 @@
     </tr>
   </tbody>
 </table>
+
+<!-- Controles de paginación -->
+<div class="paginacion">
+  <button (click)="cambiarPagina1(-1)" [disabled]="currentPage === 1">Anterior</button>
+
+  <!-- Botones con número de página -->
+  <button 
+    *ngFor="let pagina of paginas"
+    (click)="cargarPagina1(pagina)"
+    [disabled]="pagina === currentPage"
+    [ngClass]="{ activo: pagina === currentPage }"
+  >
+    {{ pagina }}
+  </button>
+
+  <button (click)="cambiarPagina1(1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
+
+
+  <h1>Clientes llamado notación de métodos de Entity Framework Core (Linq). </h1>
+  <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Pais Origen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes2">
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.telefono | formatoTelefono }}</td>
+      <td>{{ cliente.paisOrigen }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Controles de paginación -->
+<div class="paginacion">
+  <button (click)="cambiarPagina2(-1)" [disabled]="currentPage === 1">Anterior</button>
+
+  <!-- Botones con número de página -->
+  <button 
+    *ngFor="let pagina of paginas"
+    (click)="cargarPagina2(pagina)"
+    [disabled]="pagina === currentPage"
+    [ngClass]="{ activo: pagina === currentPage }"
+  >
+    {{ pagina }}
+  </button>
+
+  <button (click)="cambiarPagina2(1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>

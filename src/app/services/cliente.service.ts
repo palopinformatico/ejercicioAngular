@@ -10,15 +10,29 @@ export interface Cliente {
   paisOrigen: string;
 }
 
+export interface ClientePaginadoResponse {
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
+  clientes: Cliente[];
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:5064/api/clientes'; // Cambia si es otro puerto
+  private apiUrl = 'http://localhost:5064/api/clientes';    // Endpoint para clientes
+  private apiUrl2 = 'http://localhost:5064/api/clientes2';  // Endpoint para clientes2
 
   constructor(private http: HttpClient) {}
 
-  obtenerClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(this.apiUrl);
+  obtenerClientes(page: number = 1): Observable<ClientePaginadoResponse> {
+	return this.http.get<ClientePaginadoResponse>(`${this.apiUrl2}?page=${page}`);
+  }
+
+  obtenerClientes2(page: number = 1): Observable<ClientePaginadoResponse> {
+	return this.http.get<ClientePaginadoResponse>(`${this.apiUrl2}?page=${page}`);
   }
 }
